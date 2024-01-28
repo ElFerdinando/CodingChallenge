@@ -1,6 +1,6 @@
 package coding.challenge.salesmansearch.model
 
-val allSalesman: List<Salesman> =
+val allSampleSalesman: List<Salesman> =
     listOf(
         Salesman("Artem Titarenko", setOf("76133")),
         Salesman("Bernd Schmitt", setOf("7619*")),

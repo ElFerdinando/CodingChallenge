@@ -1,13 +1,12 @@
 package coding.challenge.salesmansearch.viewmodel
 
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateMapOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import coding.challenge.salesmansearch.model.Salesman
-import coding.challenge.salesmansearch.model.allSalesman
+import coding.challenge.salesmansearch.model.allSampleSalesman
+import coding.challenge.salesmansearch.model.repositories.FakeSalesmanRepository
+import coding.challenge.salesmansearch.model.repositories.SalesmanRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,17 +21,19 @@ class SalesmanSearchViewModel : ViewModel() {
 
     val expandedMap = mutableStateMapOf<Salesman, Boolean>()
 
+    //TODO remove FakeSalesmanRepository as soon as real one is implemented
+    private val salesmanRepository: SalesmanRepository = FakeSalesmanRepository()
 
-    private val _salesmen = MutableStateFlow(allSalesman)
-    val salesmen = searchText
+
+    private val _salesmen = MutableStateFlow(listOf<Salesman>())
+    val salesmen = _searchText
         .debounce(1000L)
-        .combine(_salesmen) { text, salesmen ->
+        .combine(_salesmen) { text, _ ->
             if (text.isBlank()) {
-                salesmen
+                //empty list if search field is empty
+                listOf()
             } else {
-                salesmen.filter {
-                    it.doesMatchSearchQuery(text)
-                }
+                salesmanRepository.getSalesman(text)
             }
         }
         .stateIn(
@@ -51,4 +52,5 @@ class SalesmanSearchViewModel : ViewModel() {
         _searchText.value = text
         expandedMap.clear()
     }
+
 }
