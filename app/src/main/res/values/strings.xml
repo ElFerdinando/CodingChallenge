@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SalesmanSearch</string>
+    <string name="app_topbar_title">Addresses</string>
+    <string name="search_field_placeholder">Search</string>
+</resources>
