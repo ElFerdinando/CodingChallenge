@@ -1,5 +1,6 @@
 package coding.challenge.salesmansearch.view
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding

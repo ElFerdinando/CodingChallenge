@@ -4,7 +4,6 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import coding.challenge.salesmansearch.model.Salesman
-import coding.challenge.salesmansearch.model.allSampleSalesman
 import coding.challenge.salesmansearch.model.repositories.FakeSalesmanRepository
 import coding.challenge.salesmansearch.model.repositories.SalesmanRepository
 import kotlinx.coroutines.flow.MutableStateFlow
